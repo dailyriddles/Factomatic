@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factomatic - Random Facts</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.15/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div id="root"></div>
+  <script type="text/babel">
+    const facts = [
+      // Science & Nature
+      { category: "Science & Nature", text: "A single bolt of lightning contains enough energy to toast 100,000 slices of bread." },
+      { category: "Science & Nature", text: "Octopuses have three hearts." },
+      { category: "Science & Nature", text: "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible." },
+      { category: "Science & Nature", text: "The Earth's core is as hot as the surface of the sun." },
+      { category: "Science & Nature", text: "A day on Venus is longer than a year on Venus. It takes 243 Earth days to rotate once, but only 225 to orbit the sun." },
+      { category: "Science & Nature", text: "There is a species of jellyfish (Turritopsis dohrnii) that is biologically immortal." },
+      { category: "Science & Nature", text: "The smell of rain after a dry spell is called 'petrichor.'" },
+      { category: "Science & Nature", text: "A neutron star is so dense that a teaspoon of its material would weigh about 10 million tons on Earth." },
+      { category: "Science & Nature", text: "Bananas are berries, but strawberries aren't." },
+      { category: "Science & Nature", text: "The human nose can detect over 1 trillion different scents." },
+      { category: "Science & Nature", text: "Water can exist in three states simultaneously at a specific temperature and pressure called the triple point." },
+      { category: "Science & Nature", text: "The shortest path a ray of light can take is called a geodesic." },
+      // History & Culture
+      { category: "History & Culture", text: "The shortest war in history was between Britain and Zanzibar in 1896. Zanzibar surrendered after 38 minutes." },
+      { category: "History & Culture", text: "Cleopatra lived closer in time to the moon landing than to the construction of the Great Pyramid of Giza." },
+      { category: "History & Culture", text: "The ancient Romans used crushed mouse brains as toothpaste." },
+      { category: "History & Culture", text: "Scotland's national animal is the unicorn." },
+      { category: "History & Culture", text: "The first recorded use of the phrase 'OMG' was in a 1917 letter to Winston Churchill." },
+      { category: "History & Culture", text: "Napoleon was once attacked by a horde of bunnies." },
+      { category: "History & Culture", text: "The Great Wall of China is not visible from space with the naked eye." },
+      { category: "History & Culture", text: "Before the invention of erasers, people used rolled-up bread to erase pencil marks." },
+      { category: "History & Culture", text: "The Titanic had a cat on board named Jenny. She reportedly disembarked before the ship set sail, taking her kittens with her." },
+      { category: "History & Culture", text: "In 1945, a flock of birds was mistaken for enemy radar and nearly caused the U.S. to launch a counter-attack during World War II." },
+      { category: "History & Culture", text: "The first computer was invented in the 1940s, called the ENIAC, and weighed over 27 tons." },
+      { category: "History & Culture", text: "The oldest known written recipe is for beer, dating back to 1800 BCE in Mesopotamia." },
+      // Animals & Insects
+      { category: "Animals & Insects", text: "A group of flamingos is called a 'flamboyance.'" },
+      { category: "Animals & Insects", text: "Elephants are the only mammals that can't jump." },
+      { category: "Animals & Insects", text: "A shrimp's heart is located in its head." },
+      { category: "Animals & Insects", text: "Cows have best friends and get stressed when they are separated." },
+      { category: "Animals & Insects", text: "It is physically impossible for pigs to look up at the sky." },
+      { category: "Animals & Insects", text: "A single strand of spaghetti is called a 'spaghetto.'" },
+      { category: "Animals & Insects", text: "The world's oldest known living creature was a ocean quahog clam named Ming, who was 507 years old when scientists accidentally killed it." },
+      { category: "Animals & Insects", text: "Gorillas can catch human colds and other illnesses." },
+      { category: "Animals & Insects", text: "Butterflies taste with their feet." },
+      { category: "Animals & Insects", text: "A newborn kangaroo is about 1 inch long." },
+      { category: "Animals & Insects", text: "Sloths can hold their breath for up to 40 minutes underwater." },
+      { category: "Animals & Insects", text: "A group of crows is called a 'murder.'" },
+      // Food & Drink
+      { category: "Food & Drink", text: "Peanuts are not nuts; they are legumes, like lentils and peas." },
+      { category: "Food & Drink", text: "The little plastic sleeve on a pizza box is called a 'package saver' or 'box tent.'" },
+      { category: "Food & Drink", text: "The indent on the bottom of a wine bottle is called a 'punt.'" },
+      { category: "Food & Drink", text: "McDonald's once made bubblegum-flavored broccoli in an attempt to get kids to eat healthier." },
+      { category: "Food & Drink", text: "The world's most expensive pizza costs $12,000 and takes 72 hours to make." },
+      { category: "Food & Drink", text: "The fear of cooking is known as 'mageirocophobia.'" },
+      { category: "Food & Drink", text: "The '57' on a Heinz ketchup bottle represents the number of varieties of pickles the company once had, not the number of ketchup varieties." },
+      { category: "Food & Drink", text: "Carrots were originally purple and white. The orange carrot was bred in the Netherlands in the 17th century." },
+      { category: "Food & Drink", text: "The world's strongest coffee has 200% more caffeine than a standard cup." },
+      { category: "Food & Drink", text: "The drink 'Gatorade' was named after the University of Florida Gators, for whom it was originally developed." },
+      { category: "Food & Drink", text: "The smell of chocolate increases theta brain waves, which triggers relaxation." },
+      { category: "Food & Drink", text: "Apples belong to the rose family, as do pears and plums." },
+      // Human Body & Mind
+      { category: "Human Body & Mind", text: "Your body produces about 25 million new cells each second." },
+      { category: "Human Body & Mind", text: "The human eye can distinguish about 10 million different colors." },
+      { category: "Human Body & Mind", text: "You are about 1 centimeter taller in the morning than you are at night." },
+      { category: "Human Body & Mind", text: "The stomach's acid is strong enough to dissolve razor blades." },
+      { category: "Human Body & Mind", text: "Your brain can power a light bulb (it generates about 12-25 watts of electricity)." },
+      { category: "Human Body & Mind", text: "Humans are the only animals that blush." },
+      { category: "Human Body & Mind", text: "Your fingerprints are not unique to you—your tongue print is." },
+      { category: "Human Body & Mind", text: "The average person will spend about six months of their life waiting for red traffic lights to turn green." },
+      { category: "Human Body & Mind", text: "Your teeth are considered part of your skeletal system, but they are not counted as bones." },
+      { category: "Human Body & Mind", text: "The feeling of getting lost in a good book has a name: it's called 'narrative transport.'" },
+      { category: "Human Body & Mind", text: "Your heart beats about 100,000 times per day." },
+      { category: "Human Body & Mind", text: "Humans share 50% of their DNA with bananas." },
+      // Technology & Innovation
+      { category: "Technology & Innovation", text: "The first computer mouse was made of wood." },
+      { category: "Technology & Innovation", text: "The 'www' part of a web address is called a 'subdomain.'" },
+      { category: "Technology & Innovation", text: "The first website ever created is still online: http://info.cern.ch" },
+      { category: "Technology & Innovation", text: "The average smartphone today has more computing power than the computers used for the Apollo 11 moon landing." },
+      { category: "Technology & Innovation", text: "The original name for the search engine 'Google' was 'Backrub.'" },
+      { category: "Technology & Innovation", text: "CAPTCHA stands for 'Completely Automated Public Turing test to tell Computers and Humans Apart.'" },
+      { category: "Technology & Innovation", text: "The fear of running out of phone battery is called 'nomophobia.'" },
+      { category: "Technology & Innovation", text: "The '@' symbol has no official name in English. It's commonly called the 'at sign.'" },
+      { category: "Technology & Innovation", text: "The world's first video game was a simple tennis game, similar to Pong, called 'Tennis for Two' and was created in 1958." },
+      { category: "Technology & Innovation", text: "A single Google search requires more computing power than the entire Apollo mission to the moon." },
+      { category: "Technology & Innovation", text: "The first email was sent by Ray Tomlinson to himself in 1971." },
+      { category: "Technology & Innovation", text: "The QWERTY keyboard was designed to slow down typing to prevent jamming on mechanical typewriters." },
+      // Language & Literature
+      { category: "Language & Literature", text: "The word 'nerd' was first coined by Dr. Seuss in his book 'If I Ran the Zoo.'" },
+      { category: "Language & Literature", text: "The sentence 'The quick brown fox jumps over the lazy dog' uses every letter in the English alphabet." },
+      { category: "Language & Literature", text: "The word 'nightingale' can be sung to the tune of the same name." },
+      { category: "Language & Literature", text: "The dot over the letters 'i' and 'j' is called a 'tittle.'" },
+      { category: "Language & Literature", text: "There are no words in the English language that rhyme with 'orange,' 'month,' 'silver,' or 'purple.'" },
+      { category: "Language & Literature", text: "William Shakespeare invented the word 'assassination.'" },
+      { category: "Language & Literature", text: "The word 'night' is the same in every language." },
+      { category: "Language & Literature", text: "The longest word in the English language without a vowel is 'rhythms.'" },
+      { category: "Language & Literature", text: "The word 'set' has more definitions than any other word in the English language." },
+      { category: "Language & Literature", text: "The ampersand symbol '&' was once considered the 27th letter of the alphabet." },
+      { category: "Language & Literature", text: "The word 'alphabet' comes from the first two Greek letters, 'alpha' and 'beta.'" },
+      { category: "Language & Literature", text: "The shortest complete sentence in English is 'I am.'" },
+      // Unusual Laws & Rules
+      { category: "Unusual Laws & Rules", text: "In Alaska, it is illegal to wake a sleeping bear to take a photograph." },
+      { category: "Unusual Laws & Rules", text: "In France, it is illegal to name a pig 'Napoleon.'" },
+      { category: "Unusual Laws & Rules", text: "In Ohio, it is illegal to get a fish drunk." },
+      { category: "Unusual Laws & Rules", text: "In the UK, a pregnant woman can legally relieve herself anywhere she wants, including in a police officer's helmet." },
+      { category: "Unusual Laws & Rules", text: "In Switzerland, it is illegal to own just one guinea pig because they are social animals and get lonely." },
+      { category: "Unusual Laws & Rules", text: "In Singapore, chewing gum is banned (except for therapeutic purposes)." },
+      { category: "Unusual Laws & Rules", text: "In Vermont, women must get written permission from their husbands to wear false teeth." },
+      { category: "Unusual Laws & Rules", text: "In Arizona, it is illegal for donkeys to sleep in bathtubs." },
+      { category: "Unusual Laws & Rules", text: "In Minnesota, it is illegal to cross the state line with a duck on your head." },
+      { category: "Unusual Laws & Rules", text: "In Florida, it is illegal to sing in a public place while wearing a swimsuit." },
+      { category: "Unusual Laws & Rules", text: "In Alabama, it is illegal to wear a fake mustache that causes laughter in church." },
+      { category: "Unusual Laws & Rules", text: "In California, it is illegal to whistle for a lost canary before 7 a.m." },
+      // Geography & Travel
+      { category: "Geography & Travel", text: "There is a town in Norway called 'Hell.' It freezes over every winter." },
+      { category: "Geography & Travel", text: "Canada has the longest coastline of any country in the world." },
+      { category: "Geography & Travel", text: "The deepest point on Earth, the Mariana Trench, is deeper than Mount Everest is tall." },
+      { category: "Geography & Travel", text: "Russia spans 11 time zones." },
+      { category: "Geography & Travel", text: "France has the most time zones of any country in the world (12, due to its overseas territories)." },
+      { category: "Geography & Travel", text: "You can mail a coconut with a postage stamp instead of a box in the United States. It's considered a 'natural container.'" },
+      { category: "Geography & Travel", text: "The state of Alaska is the most northern, western, and eastern state in the U.S. (Due to the Aleutian Islands crossing the 180th meridian)." },
+      { category: "Geography & Travel", text: "Istanbul, Turkey, is the only city in the world located on two continents (Europe and Asia)." },
+      { category: "Geography & Travel", text: "The world's smallest border is between Spain and Morocco. It's just 270 feet long." },
+      { category: "Geography & Travel", text: "Due to tectonic plate movement, Europe and North America are moving apart at about the same speed your fingernails grow." },
+      { category: "Geography & Travel", text: "The Sahara Desert is expanding at a rate of about 0.6 miles per year." },
+      { category: "Geography & Travel", text: "Vatican City is the smallest country in the world, with an area of just 44 hectares." },
+      // Music & Entertainment
+      { category: "Music & Entertainment", text: "The highest note ever sung by a human was a G10, achieved by Georgia Brown." },
+      { category: "Music & Entertainment", text: "The '50s' doo-wop sound is created by singing the word 'doo-wop' backwards: 'pow-ood.'" },
+      { category: "Music & Entertainment", text: "The famous '20th Century Fox' fanfare was originally composed in 1933." },
+      { category: "Music & Entertainment", text: "The actor who played Darth Vader, David Prowse, did not provide the character's voice. James Earl Jones was brought in to dub it." },
+      { category: "Music & Entertainment", text: "The sound of the T-Rex in Jurassic Park is a combination of a baby elephant, a tiger, and an alligator." },
+      { category: "Music & Entertainment", text: "The 'Wilhelm Scream' is a famous stock sound effect that has been used in over 400 films and TV shows." },
+      { category: "Music & Entertainment", text: "The first music video ever played on MTV was 'Video Killed the Radio Star' by The Buggles." },
+      { category: "Music & Entertainment", text: "The 'Happy Birthday' song was once under copyright and earned its owners millions of dollars in royalties until it entered the public domain in 2016." },
+      { category: "Music & Entertainment", text: "The actor who played the monster in the original 'Frankenstein' film (Boris Karloff) was not listed in the opening credits." },
+      { category: "Music & Entertainment", text: "The 'I Love Lucy' show was shot on film, which is why the episodes are still high quality today, while many other shows from the era were shot on lower-quality kinescope and are lost." },
+      { category: "Music & Entertainment", text: "The Beatles used a hidden message in their song 'Strawberry Fields Forever' that says 'I buried Paul' when played backwards." },
+      { category: "Music & Entertainment", text: "The shortest song ever recorded is 'You Suffer' by Napalm Death, lasting 1.316 seconds." }
+    ];
+
+    const categories = [...new Set(facts.map(fact => fact.category))];
+
+    function FactGenerator() {
+      const [selectedCategory, setSelectedCategory] = React.useState("All");
+      const [currentFact, setCurrentFact] = React.useState(null);
+
+      const getRandomFact = () => {
+        let filteredFacts = facts;
+        if (selectedCategory !== "All") {
+          filteredFacts = facts.filter(fact => fact.category === selectedCategory);
+        }
+        const randomIndex = Math.floor(Math.random() * filteredFacts.length);
+        setCurrentFact(filteredFacts[randomIndex]);
+      };
+
+      return (
+        <div className="min-h-screen flex flex-col items-center justify-center p-4">
+          <div className="max-w-2xl w-full text-center">
+            <h1 className="text-4xl font-bold text-blue-600 mb-4">Factomatic</h1>
+            <p className="text-lg text-gray-700 mb-2">Discover the most interesting, quirky, and mind-blowing facts from around the world. All it takes is one click.</p>
+            <p className="text-md text-gray-600 mb-6">Did you know? The world is full of astonishing truths waiting to be discovered. Factomatic is a simple, fun tool to learn something new every day. No fluff, no images, just pure, fascinating knowledge. Go on, give it a try!</p>
+            
+            <div className="mb-6">
+              <label htmlFor="category" className="block text-lg font-medium text-gray-700 mb-2">Select a Category:</label>
+              <select
+                id="category"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="p-2 border rounded-lg w-full max-w-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="All">All Categories</option>
+                {categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              onClick={getRandomFact}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold"
+            >
+              Generate a Random Fact!
+            </button>
+
+            {currentFact && (
+              <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+                <p className="text-lg text-gray-800"><strong>{currentFact.category}:</strong> {currentFact.text}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<FactGenerator />, document.getElementById('root'));
+  </script>
+</body>
+</html>
